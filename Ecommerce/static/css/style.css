@@ -1,0 +1,26 @@
+/* ==============================================================================
+ * File: static/css/style.css
+ * Description: Custom CSS styles for the electrical tools store.
+ * ============================================================================== */
+
+ body {
+    font-family: 'Inter', sans-serif;
+    direction: rtl; /* Ensures right-to-left direction for Arabic text */
+    text-align: right; /* Aligns text to the right by default */
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | متجر الأدوات الكهربائية</title> {# Updated title #}
+    <!-- تحميل Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- تحميل أيقونات Heroicons (لأيقونة سلة التسوق) -->
+    <script src="https://unpkg.com/heroicons@2.1.1/24/outline/index.js" type="module"></script>
+    <!-- خط Inter من Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- ربط ملف CSS المخصص -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- شريط التنقل العلوي (Header) -->
+    <header class="bg-blue-700 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{% url 'home' %}" class="text-2xl font-bold rounded-md p-2 hover:bg-blue-600 transition duration-300">
+                متجر الأدوات الكهربائية
+            </a>
+            <nav>
+                <ul class="flex space-x-4 space-x-reverse">
+                    <li><a href="{% url 'home' %}" class="rounded-md p-2 hover:bg-blue-600 transition duration-300">الرئيسية</a></li>
+                    <li><a href="#products" class="rounded-md p-2 hover:bg-blue-600 transition duration-300">المنتجات</a></li>
+                    <li><a href="#about" class="rounded-md p-2 hover:bg-blue-600 transition duration-300">من نحن</a></li>
+                    <li><a href="#why-choose-us" class="rounded-md p-2 hover:bg-blue-600 transition duration-300">لماذا تختارنا؟</a></li>
+                    <li><a href="#testimonials" class="rounded-md p-2 hover:bg-blue-600 transition duration-300">آراء العملاء</a></li>
+                    <li><a href="#faq" class="rounded-md p-2 hover:bg-blue-600 transition duration-300">الأسئلة الشائعة</a></li>
+                    <li><a href="#contact" class="rounded-md p-2 hover:bg-blue-600 transition duration-300">اتصل بنا</a></li>
+                    <li>
+                        <!-- أيقونة سلة التسوق مع عداد المنتجات -->
+                        <button id="cart-button" class="relative p-2 rounded-md hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.023.832l.523 3.14M3.75 16.5h10.022c.812 0 1.468-.656 1.468-1.468V13.5m-10.388 0h9.252a1.05 1.05 0 0 0 1.05-1.05V9.75m-6.75 6.75V10.5m6.75 6.75V10.5M12 2.25c-1.892 0-3.755.337-5.567.954a48.54 48.54 0 0 0-1.05 1.066M12 2.25c1.892 0 3.755.337 5.567.954a48.54 48.54 0 0 1 1.05 1.066M12 2.25c-2.36 0-4.57.447-6.583 1.25M12 2.25c2.36 0 4.57.447 6.583 1.25M18.75 9a.75.75 0 0 0-.75.75v3.75a.75.75 0 0 0 .75.75h.75a.75.75 0 0 0 .75-.75V9.75a.75.75 0 0 0-.75-.75h-.75ZM12 18a.75.75 0 0 0-.75.75v.75a.75.75 0 0 0 .75.75h.75a.75.75 0 0 0 .75-.75v-.75a.75.75 0 0 0-.75-.75h-.75Z" />
+                            </svg>
+                            <span id="cart-count" class="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center -mt-1 -mr-1">0</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- القسم الرئيسي (Hero Section) -->
+    <section class="bg-blue-600 text-white py-16 text-center shadow-inner rounded-b-lg">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-4 animate-pulse">أدوات كهربائية عالية الجودة</h2>
+            <p class="text-xl md:text-2xl mb-8">كل ما تحتاجه لمشاريعك الكهربائية تحت سقف واحد.</p>
+            <a href="#products" class="bg-white text-blue-700 px-6 py-3 rounded-full text-lg font-semibold hover:bg-gray-200 transition duration-300 shadow-lg transform hover:scale-105">
+                تصفح المنتجات الآن
+            </a>
+        </div>
+    </section>
+
+    <!-- قسم المنتجات (Products Section) -->
+    <section id="products" class="container mx-auto py-12 px-4">
+        <h2 class="text-3xl font-bold text-center mb-8">{{ title }}</h2> {# Updated: Dynamic title for products #}
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- شريط جانبي للأصناف -->
+            <div class="w-full md:w-1/4 bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4">الأصناف</h3>
+                <ul class="space-y-2">
+                    <li><a href="{% url 'home' %}" class="block p-2 rounded-md hover:bg-gray-100 transition duration-200 {% if not request.resolver_match.kwargs.category_id %}bg-blue-100 text-blue-700{% endif %}">جميع المنتجات</a></li>
+                    {% for category in categories %}
+                        <li>
+                            <a href="{% url 'products_by_category' category.id %}" class="block p-2 rounded-md hover:bg-gray-100 transition duration-200 {% if request.resolver_match.kwargs.category_id == category.id %}bg-blue-100 text-blue-700{% endif %}">
+                                {{ category.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- شبكة عرض المنتجات -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:w-3/4">
+                {% for product in products %}
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 flex flex-col">
+                    <img src="{{ product.image_url }}" alt="{{ product.name }}" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold mb-2">{{ product.name }}</h3>
+                        <p class="text-gray-700 mb-2">السعر: {{ product.price|floatformat:2 }} ريال</p>
+                        {# Display stock information #}
+                        {% if product.stock > 0 %}
+                            <p class="text-green-600 font-medium mb-4">متوفر: {{ product.stock }} قطعة</p>
+                            <button class="add-to-cart-btn bg-blue-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-600 transition duration-300 shadow-md" data-id="{{ product.id }}" data-name="{{ product.name }}" data-price="{{ product.price }}" data-stock="{{ product.stock }}">
+                                أضف إلى السلة
+                            </button>
+                        {% else %}
+                            <p class="text-red-600 font-medium mb-4">غير متوفر حالياً</p>
+                            <button class="bg-gray-400 text-white px-4 py-2 rounded-md font-semibold cursor-not-allowed" disabled>
+                                غير متوفر
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
+                {% empty %}
+                <p class="col-span-full text-center text-gray-600">لا توجد منتجات حالياً في هذا الصنف.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم من نحن (About Us Section) -->
+    <section id="about" class="bg-gray-200 py-16 px-4 rounded-lg shadow-inner mt-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">من نحن</h2>
+            <p class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+                متجر الأدوات الكهربائية هو وجهتك الأولى للحصول على أحدث وأجود الأدوات الكهربائية. نلتزم بتقديم منتجات موثوقة تلبي احتياجات المهنيين والهواة على حد سواء، مع خدمة عملاء استثنائية لضمان رضاك التام. نسعى دائمًا لتقديم الأفضل في عالم الأدوات الكهربائية، مدعومين بفريق من الخبراء وشبكة واسعة من الموردين الموثوقين.
+            </p>
+        </div>
+    </section>
+
+    <!-- قسم لماذا تختارنا؟ (Why Choose Us Section) -->
+    <section id="why-choose-us" class="py-16 px-4 mt-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8">لماذا تختار متجرنا؟</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-blue-600 mx-auto mb-4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-10.5m-4.5 4.5l-4.5 4.5m12 0l-4.5-4.5m-4.5 4.5l-4.5 4.5M12 18.75l-4.5 4.5m9-4.5l-4.5 4.5" />
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2">جودة لا تضاهى</h3>
+                    <p class="text-gray-700">نقدم فقط الأدوات الكهربائية من أفضل العلامات التجارية لضمان الأداء والمتانة.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-blue-600 mx-auto mb-4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182L12 12.75M12 10.5l-1.5-.75a6 6 0 0 0-6 6v3.75m6-1.5h.008v.008H12v-.008ZM12 10.5h.008v.008H12v-.008ZM12 10.5h.008v.008H12v-.008ZM12 10.5h.008v.008H12v-.008Z" />
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2">أسعار تنافسية</h3>
+                    <p class="text-gray-700">نضمن لك أفضل الأسعار في السوق دون المساومة على الجودة.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-blue-600 mx-auto mb-4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2">خدمة عملاء ممتازة</h3>
+                    <p class="text-gray-700">فريق دعم فني جاهز لمساعدتك في أي وقت، قبل وبعد الشراء.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم آراء العملاء (Testimonials Section) -->
+    <section id="testimonials" class="bg-gray-200 py-16 px-4 rounded-lg shadow-inner mt-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8 text-gray-800">ماذا يقول عملاؤنا؟</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-gray-700">
+                    <p class="italic mb-4">"تجربة شراء رائعة! وجدت كل ما أحتاجه وبجودة عالية. خدمة التوصيل كانت سريعة جداً."</p>
+                    <p class="font-semibold">- أحمد سعيد</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-gray-700">
+                    <p class="italic mb-4">"أدوات كهربائية ممتازة بأسعار لا تصدق. هذا المتجر هو خياري الأول دائمًا لمشاريعي."</p>
+                    <p class="font-semibold">- فاطمة علي</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الأسئلة الشائعة (FAQ Section) -->
+    <section id="faq" class="py-16 px-4 mt-12">
+        <div class="container mx-auto max-w-3xl">
+            <h2 class="text-3xl font-bold text-center mb-8">الأسئلة الشائعة</h2>
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2 cursor-pointer flex justify-between items-center" onclick="toggleFaq(this)">
+                        كيف يمكنني تتبع طلبي؟
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 transform transition-transform duration-300">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </h3>
+                    <p class="text-gray-700 mt-2 hidden">بعد إتمام عملية الشراء، ستتلقى رسالة بريد إلكتروني تحتوي على رقم تتبع لطلبك. يمكنك استخدام هذا الرقم لتتبع حالة طلبك عبر صفحة تتبع الطلبات لدينا.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2 cursor-pointer flex justify-between items-center" onclick="toggleFaq(this)">
+                        ما هي طرق الدفع المتاحة؟
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 transform transition-transform duration-300">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </h3>
+                    <p class="text-gray-700 mt-2 hidden">نقبل الدفع عبر البطاقات الائتمانية (فيزا، ماستركارد)، التحويل البنكي، والدفع عند الاستلام في بعض المناطق.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2 cursor-pointer flex justify-between items-center" onclick="toggleFaq(this)">
+                        هل يمكنني إرجاع المنتج؟
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 transform transition-transform duration-300">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </h3>
+                    <p class="text-gray-700 mt-2 hidden">نعم، يمكنك إرجاع المنتج خلال 7 أيام من تاريخ الاستلام بشرط أن يكون في حالته الأصلية. يرجى مراجعة سياسة الإرجاع لمزيد من التفاصيل.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم اتصل بنا (Contact Us Section) -->
+    <section id="contact" class="py-16 px-4 mt-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-8">اتصل بنا</h2>
+            <div class="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
+                <form action="#" method="POST" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-gray-700 text-sm font-bold mb-2">الاسم:</label>
+                        <input type="text" id="name" name="name" class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" placeholder="اسمك الكامل">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">البريد الإلكتروني:</label>
+                        <input type="email" id="email" name="email" class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" placeholder="بريدك الإلكتروني">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-700 text-sm font-bold mb-2">الرسالة:</label>
+                        <textarea id="message" name="message" rows="5" class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" placeholder="اكتب رسالتك هنا..."></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-600 transition duration-300 shadow-md transform hover:scale-105">
+                            إرسال الرسالة
+                        </button>
+                    </div>
+                </form>
+                <div class="mt-8 text-center text-gray-700">
+                    <p>أو تواصل معنا مباشرة:</p>
+                    <p class="font-semibold">البريد الإلكتروني: info@electricaltools.com</p>
+                    <p class="font-semibold">الهاتف: +967 77XXXXXXX</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم النشرة الإخبارية (Newsletter Signup) -->
+    <section id="newsletter" class="bg-blue-700 text-white py-12 px-4 rounded-lg shadow-lg mt-12 text-center">
+        <div class="container mx-auto max-w-2xl">
+            <h2 class="text-3xl font-bold mb-4">اشترك في نشرتنا الإخبارية</h2>
+            <p class="text-lg mb-6">احصل على آخر العروض، المنتجات الجديدة، والنصائح مباشرة في بريدك الوارد.</p>
+            <form action="#" method="POST" class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <input type="email" placeholder="أدخل بريدك الإلكتروني" class="flex-grow p-3 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <button type="submit" class="bg-white text-blue-700 px-6 py-3 rounded-md font-semibold hover:bg-gray-200 transition duration-300 shadow-md transform hover:scale-105">
+                    اشترك الآن
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- تذييل الصفحة (Footer) -->
+    <footer class="bg-gray-800 text-white py-8 mt-12 rounded-t-lg">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 متجر الأدوات الكهربائية. جميع الحقوق محفوظة.</p>
+            <div class="flex justify-center space-x-4 space-x-reverse mt-4">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">الخصوصية</a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">الشروط والأحكام</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- نافذة سلة التسوق المنبثقة (Cart Modal) -->
+    <div id="cart-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-6 rounded-lg shadow-xl w-11/12 md:w-1/2 lg:w-1/3 max-h-[90vh] overflow-y-auto relative">
+            <button id="close-cart-modal" class="absolute top-3 left-3 text-gray-600 hover:text-gray-900 text-2xl font-bold focus:outline-none">
+                &times;
+            </button>
+            <h3 class="text-2xl font-bold mb-4">سلة التسوق</h3>
+            <div id="cart-items" class="space-y-4">
+                <!-- سيتم تحميل عناصر السلة هنا بواسطة JavaScript -->
+            </div>
+            <div class="border-t border-gray-200 pt-4 mt-4 flex justify-between items-center">
+                <span class="text-lg font-semibold">الإجمالي: <span id="cart-total">0.00</span> ريال</span>
+                <button id="checkout-button" class="bg-green-500 text-white px-6 py-2 rounded-md font-semibold hover:bg-green-600 transition duration-300 shadow-md transform hover:scale-105">
+                    إتمام الشراء
+                </button>
+            </div>
+            <!-- رسالة تأكيد الشراء (تظهر بعد النقر على إتمام الشراء) -->
+            <div id="checkout-message" class="hidden mt-4 p-3 bg-green-100 text-green-800 rounded-md text-center">
+                تمت عملية الشراء بنجاح! شكراً لك.
+            </div>
+        </div>
+    </div>
+
+    <!-- رسالة تأكيد/خطأ مخصصة (بدلاً من alert()) -->
+    <div id="custom-message-box" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-xl z-[100] hidden border-t-4" style="min-width: 300px;">
+        <h4 id="message-title" class="text-xl font-bold mb-2"></h4>
+        <p id="message-text" class="text-gray-700 mb-4"></p>
+        <button id="message-close-button" class="bg-blue-500 text-white px-4 py-2 rounded-md float-left hover:bg-blue-600 transition duration-300">موافق</button>
+    </div>
+
+    <!-- ربط ملف JavaScript المخصص -->
+    <script src="{% static 'js/script.js' %}"></script>
+    <script>
+        // JavaScript for FAQ section (toggle functionality)
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling; // Get the next sibling (the answer paragraph)
+            const icon = element.querySelector('svg'); // Get the SVG icon
+
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.classList.add('rotate-180'); // Rotate icon when open
+            } else {
+                answer.classList.add('hidden');
+                icon.classList.remove('rotate-180'); // Reset icon when closed
+            }
+        }
+
+        // Update add-to-cart-btn to check stock
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                button.addEventListener('click', addToCart);
+            });
+            updateCartDisplay();
+        });
+
+        // Modified addToCart function to check stock
+        function addToCart(event) {
+            const productId = parseInt(event.target.dataset.id);
+            const productName = event.target.dataset.name;
+            const productPrice = parseFloat(event.target.dataset.price);
+            const productStock = parseInt(event.target.dataset.stock); // Get stock from data attribute
+
+            const product = { id: productId, name: productName, price: productPrice, stock: productStock };
+
+            if (product) {
+                const existingItem = cart.find(item => item.id === productId);
+
+                if (existingItem) {
+                    if (existingItem.quantity < product.stock) { // Check if adding more exceeds stock
+                        existingItem.quantity++;
+                        showCustomMessage('تم التحديث', `تمت زيادة كمية ${product.name} في السلة.`, 'info');
+                    } else {
+                        showCustomMessage('المخزون غير كافٍ', `لا يمكن إضافة المزيد من ${product.name}. المخزون المتاح هو ${product.stock}.`, 'error');
+                    }
+                } else {
+                    if (product.stock > 0) { // Only add if stock is available
+                        cart.push({ ...product, quantity: 1 });
+                        showCustomMessage('تمت الإضافة', `تمت إضافة ${product.name} إلى السلة.`, 'success');
+                    } else {
+                        showCustomMessage('غير متوفر', `${product.name} غير متوفر حالياً.`, 'error');
+                    }
+                }
+                updateCartDisplay();
+            }
+        }
+
+        // Modified changeQuantity function to check stock
+        function changeQuantity(event) {
+            const productId = parseInt(event.target.dataset.id);
+            const action = event.target.textContent; // "+" or "-"
+
+            const itemIndex = cart.findIndex(item => item.id === productId);
+
+            if (itemIndex !== -1) {
+                const currentProductInCart = cart[itemIndex];
+                const productFromPage = document.querySelector(`.add-to-cart-btn[data-id="${productId}"]`);
+                const availableStock = parseInt(productFromPage.dataset.stock);
+
+                if (action === '+') {
+                    if (currentProductInCart.quantity < availableStock) { // Check stock before increasing
+                        currentProductInCart.quantity++;
+                    } else {
+                        showCustomMessage('المخزون غير كافٍ', `لا يمكن إضافة المزيد من ${currentProductInCart.name}. المخزون المتاح هو ${availableStock}.`, 'error');
+                    }
+                } else if (action === '-') {
+                    currentProductInCart.quantity--;
+                    if (currentProductInCart.quantity <= 0) {
+                        cart.splice(itemIndex, 1);
+                    }
+                }
+                updateCartDisplay();
+            }
+        }
+    </script>
+</body>
+</html>
